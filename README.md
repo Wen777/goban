@@ -74,7 +74,7 @@ function yourCtrl($goban) {
 ```
 to start data binding.
 
-# binding Goban
+# binding Goban data
 
 ##simple binding
 
