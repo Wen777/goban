@@ -122,7 +122,12 @@ for now, Goban has only one-way binding feature, but potentially it can grow a t
 note that toIndex filter is well defined form Goban Module.
 
 
-## use ng-repeat, goban.setI, goban.setJ
+## get $sce trusted current url
+
+
+```bash
+<iframe ng-src = "{{goban.getCurrentURL()}}"></iframe>
+```
 
 
 # Contributing
