@@ -3,7 +3,7 @@ goban
 
 use Goban to manage series of  hackfoldrs
 
-[![Example] (http://upload.wikimedia.org/wikipedia/commons/6/63/Goban_19x19_vide.png)]
+![Example] (http://upload.wikimedia.org/wikipedia/commons/6/63/Goban_19x19_vide.png)
 
 ## Example
 Example see here(https://bestian.github.io/frontend)
