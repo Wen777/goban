@@ -58,8 +58,11 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 				goban.updateHash!),1000
 
 	goban.loadPage = !->
-		goban.pageLoading = true	
-		$timeout (!-> goban.pageLoading = false),2300
+		goban.pageLoading = true
+		if goban.animate.delay	
+			$timeout (!-> goban.pageLoading = false),2300
+		else 
+			goban.pageLoading = false
 
 	goban.updateHash =!->
 		$hash.upDateFromArray [goban.title, goban.myI,goban.myJ]
@@ -85,7 +88,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 		if code == 32
 			goban.data[goban.myJ].isClosed = !goban.data[goban.myJ].isClosed;
 	
-	goLeft = !-> 
+	goLeft = (n)-> 
 				goban.myI = parseInt(goban.myI)
 				goban.myI += n
 				if goban.myI == -1
@@ -94,7 +97,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 					goban.myI = 0
 				goban.updateHash!
 
-	goRight = !-> 
+	goRight = (n)-> 
 			goban.myJ = parseInt(goban.myJ)
 			goban.myJ += n
 			if goban.myJ == -1
@@ -107,7 +110,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 		goban.loadPage!
 		goban.load parseInt(goban.myI) + n
 		if goban.animate.delay
-			$timeout goLeft,goban.animate.delay
+			$timeout (goLeft n),goban.animate.delay
 		else
 			goLeft!
 
@@ -115,7 +118,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 	goban.up = (n) !->
 		goban.loadPage!
 		if goban.animate.delay
-			$timeout goRight,goban.animate.delay
+			$timeout (goRight n),goban.animate.delay
 		else 
 			goRight!
 

@@ -89,9 +89,13 @@
     };
     goban.loadPage = function(){
       goban.pageLoading = true;
-      $timeout(function(){
+      if (goban.animate.delay) {
+        $timeout(function(){
+          goban.pageLoading = false;
+        }, 2300);
+      } else {
         goban.pageLoading = false;
-      }, 2300);
+      }
     };
     goban.updateHash = function(){
       $hash.upDateFromArray([goban.title, goban.myI, goban.myJ]);
@@ -126,7 +130,7 @@
         goban.data[goban.myJ].isClosed = !goban.data[goban.myJ].isClosed;
       }
     };
-    goLeft = function(){
+    goLeft = function(n){
       goban.myI = parseInt(goban.myI);
       goban.myI += n;
       if (goban.myI === -1) {
@@ -135,9 +139,9 @@
       if (goban.myI === $colMax + 1) {
         goban.myI = 0;
       }
-      goban.updateHash();
+      return goban.updateHash();
     };
-    goRight = function(){
+    goRight = function(n){
       goban.myJ = parseInt(goban.myJ);
       goban.myJ += n;
       if (goban.myJ === -1) {
@@ -146,13 +150,13 @@
       if (goban.myJ === goban.data.length) {
         goban.myJ = 0;
       }
-      goban.updateHash();
+      return goban.updateHash();
     };
     goban.left = function(n){
       goban.loadPage();
       goban.load(parseInt(goban.myI) + n);
       if (goban.animate.delay) {
-        $timeout(goLeft, goban.animate.delay);
+        $timeout(goLeft(n), goban.animate.delay);
       } else {
         goLeft();
       }
@@ -160,7 +164,7 @@
     goban.up = function(n){
       goban.loadPage();
       if (goban.animate.delay) {
-        $timeout(goRight, goban.animate.delay);
+        $timeout(goRight(n), goban.animate.delay);
       } else {
         goRight();
       }
