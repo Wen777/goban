@@ -100,17 +100,22 @@ to start data binding.
 ```
 
 ## use ng-repeat, goban.setI, goban.setJ
+```bash
 <li ng-repeat = "i in [0,1,2,3,4,5]">
 	<a ng-class="{active: goban.myI == i}" ng-click="goban.setI(i)">
 	<!-- HTML -->
 	</a>
 </li>
+```
 
+
+```bash
 <li ng-repeat = "j in goban.data | toIndex">
 	<a ng-class="{active: goban.myJ == j}" ng-click="goban.setJ(j)">
 		<!-- HTML -->
 	</a>
 </li>
+```
 
 note that toIndex filter is well defined form Goban Module.
 
