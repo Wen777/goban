@@ -158,7 +158,7 @@
       if (goban.animate.delay) {
         $timeout(goLeft(n), goban.animate.delay);
       } else {
-        goLeft();
+        goLeft(n);
       }
     };
     goban.up = function(n){
@@ -166,7 +166,7 @@
       if (goban.animate.delay) {
         $timeout(goRight(n), goban.animate.delay);
       } else {
-        goRight();
+        goRight(n);
       }
     };
     goban.trust = function(url){

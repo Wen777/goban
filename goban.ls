@@ -112,7 +112,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 		if goban.animate.delay
 			$timeout (goLeft n),goban.animate.delay
 		else
-			goLeft!
+			goLeft n
 
 
 	goban.up = (n) !->
@@ -120,7 +120,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 		if goban.animate.delay
 			$timeout (goRight n),goban.animate.delay
 		else 
-			goRight!
+			goRight n
 
 	goban.trust = (url)->
 		$sce.trustAsResourceUrl(url)
