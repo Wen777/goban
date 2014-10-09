@@ -76,7 +76,7 @@ to start data binding.
 
 # binding Goban data
 
-Goban has only one-way binding feature, but if you'd like to improve this project, it can grow a two-way binding feature using http POST request to ethercalc.
+for now, Goban has only one-way binding feature, but potentially it can grow a two-way binding feature using http POST request to ethercalc.
 
 ##simple binding
 
