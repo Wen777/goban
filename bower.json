@@ -9,6 +9,9 @@
   "moduleType": [
     "globals"
   ],
+  "dependencies": {
+    "angular": "1.2.x || 1.3.x"
+  }
   "keywords": [
     "angular",
     "hackfoldr",
