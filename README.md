@@ -74,18 +74,36 @@ function yourCtrl($goban) {
 ```
 to start data binding.
 
+# binding Goban
+
+##simple binding
+
+```bash
+	{{goban.data[i][j]}}
+```
 
 
+##dynamic binding
+
+```bash
+	{{goban.data[goban.myI][goban.myJ]}}
+```
+
+##keyBorad Control(optional)
 
 
+```bash
+<body ng-keydown="goban.keyDown($event)">
+	<!-- HTML -->
+</body>
+
+```
 
 
-
-
-## Documentation
+# Documentation
 
 sorry, there's no documentation yet.
 
-## Contributing
+# Contributing
 
 If you'd like to contribute to Goban, please contact with: bestian@gmail.com
