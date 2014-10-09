@@ -89,7 +89,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
 		if code == 32
 			goban.data[goban.myJ].isClosed = !goban.data[goban.myJ].isClosed;
 	
-	goLeft = (n)-> 
+	goX = (n)-> 
 				goban.myI = parseInt(goban.myI)
 				goban.myI += n
 				if goban.myI == -1
@@ -98,7 +98,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
 					goban.myI = 0
 				goban.updateHash!
 
-	goUp = (n)-> 
+	goY = (n)-> 
 			goban.myJ = parseInt(goban.myJ)
 			goban.myJ += n
 			if goban.myJ == -1
@@ -107,21 +107,21 @@ myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
 				goban.myJ = 0
 			goban.updateHash!
 
-	goban.left = (n) !->
+	goban.dx = (n) !->
 		goban.loadPage!
 		goban.load parseInt(goban.myI) + n
 		if goban.animate.delay
-			$timeout (goLeft n),goban.animate.delay
+			$timeout (goX n),goban.animate.delay
 		else
-			goLeft n
+			goX n
 
 
-	goban.up = (n) !->
+	goban.dy = (n) !->
 		goban.loadPage!
 		if goban.animate.delay
-			$timeout (goRight n),goban.animate.delay
+			$timeout (goY n),goban.animate.delay
 		else 
-			goUp n
+			goY n
 
 	goban.trust = (url)->
 		$sce.trustAsResourceUrl(url)
