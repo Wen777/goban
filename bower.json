@@ -1,6 +1,7 @@
 {
   "name": "goban",
   "main": "goban.js",
+  "license": "CC0",
   "version": "0.0.0",
   "authors": [
     "Bestian Tang <besitan@gmail.com>"
@@ -19,7 +20,6 @@
     "g0v",
     "taiwan"
   ],
-  "license": "CC0",
   "homepage": "https://github.com/bestian/goban",
   "ignore": [
     "**/.*",
