@@ -49,6 +49,7 @@ angular.module('goban')
 
 ```
 
+
 use the example code above, Goban will automantically send http GET request to these url when needed: 
 	
 * https://ethercalc.org/your_title0.csv
@@ -65,11 +66,18 @@ you may change 'https://ethercalc.org/' to any other path, but your have to save
 in your controller, use
 
 ```bash
+function yourCtrl($goban) {
     $scope.goban = $goban;
     $scope.goban.load($goban.myI);
-```
+}
 
-to start data binding and load the first data from ethercalsc or other path
+```
+to start data binding.
+
+
+
+
+
 
 
 
