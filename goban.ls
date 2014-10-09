@@ -9,7 +9,7 @@ myHash = ->
 	upDateFromArray: (list) !->
 		location.hash = \# + list.join \&
 
-myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
+myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
 	goban = new Object;
 
 	parseFromCSV = (csv) ->
@@ -41,6 +41,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 	goban.myJ = $hash.asArray![2] or 0
 	goban.pageLoading = false
 	goban.animate = new Object
+	goban.colMax = $colMax or 3
 
 	goban.setI = (n) !->
 		if goban.myI != n
@@ -60,7 +61,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 	goban.loadPage = !->
 		goban.pageLoading = true
 		if goban.animate.delay	
-			$timeout (!-> goban.pageLoading = false),2300
+			$timeout (!-> goban.pageLoading = false),goban.animate.delay
 		else 
 			goban.pageLoading = false
 
@@ -92,12 +93,12 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 				goban.myI = parseInt(goban.myI)
 				goban.myI += n
 				if goban.myI == -1
-					goban.myI = $colMax
-				if goban.myI == $colMax + 1
+					goban.myI = goban.colMax
+				if goban.myI == goban.colMax + 1
 					goban.myI = 0
 				goban.updateHash!
 
-	goRight = (n)-> 
+	goUp = (n)-> 
 			goban.myJ = parseInt(goban.myJ)
 			goban.myJ += n
 			if goban.myJ == -1
@@ -120,17 +121,17 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 		if goban.animate.delay
 			$timeout (goRight n),goban.animate.delay
 		else 
-			goRight n
+			goUp n
 
 	goban.trust = (url)->
 		$sce.trustAsResourceUrl(url)
 
 	goban.getCurrentURL = ->
-		goban.trust(goban.data[goban.myJ].url or goban.data[goban.myJ+1].url)
+		goban.trust((goban.data[goban.myJ] && goban.data[goban.myJ].url) or (goban.data[goban.myJ+1] && goban.data[goban.myJ+1].url))
 
 	goban
 
 angular.module 'goban' []
 	.factory '$hash' myHash
-	.factory '$goban' [\$http, \$sce, \$path, \$title, \$hash, \$timeout, myGoban]
+	.factory '$goban' [\$http, \$sce, \$path, \$title, \$hash, \$colMax, \$timeout, myGoban]
 	.filter 'toIndex' toIndex
