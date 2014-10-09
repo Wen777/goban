@@ -1,23 +1,3 @@
-
-
-chainCtrl = ($scope, $colMax,
-				$dummy, $goban , $timeout) !->
-
-	$scope.myColumnIndex = [to $colMax]
-	$scope.myFolderIndex = [to 10]
-
-	$scope.backup = !->
-		for i in $scope.myFolderIndex
-			window.open $path+$title+i+'.csv'  \_blank "width=0, height=0, titlebar=no, toolbar=no"
-
-	$scope.goban = $goban;
-	$scope.goban.data = $dummy;
-	$scope.goban.load $goban.myI;
-
-	window.uploadDone= !->
-		alert('ha')
-		# have access to $scope here
-
 toIndex = ->
 	(list)->
 		[to list.length-1]
@@ -28,13 +8,6 @@ myHash = ->
 		@.data.replace \# '' .split \&
 	upDateFromArray: (list) !->
 		location.hash = \# + list.join \&
-
-
-myDummy = 
-		*name: '赤皮仔'
-			isFolder: false
-			url:'https://autolearn.hackpad.com/33EfKKhNtF8'
-
 
 myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 	goban = new Object;
@@ -67,6 +40,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 	goban.myI = $hash.asArray![1] or 0
 	goban.myJ = $hash.asArray![2] or 0
 	goban.pageLoading = false
+	goban.animate = new Object
 
 	goban.setI = (n) !->
 		if goban.myI != n
@@ -111,29 +85,39 @@ myGoban = ($http, $sce, $path, $title, $hash, $timeout)->
 		if code == 32
 			goban.data[goban.myJ].isClosed = !goban.data[goban.myJ].isClosed;
 	
-	goban.left = (n) !->
-		goban.loadPage!
-		goban.load parseInt(goban.myI) + n
-		$timeout (!-> 
-			goban.myI = parseInt(goban.myI)
-			goban.myI += n
-			if goban.myI == -1
-				goban.myI = $colMax
-			if goban.myI == $colMax + 1
-				goban.myI = 0
-			goban.updateHash!
-			),1000
+	goLeft = !-> 
+				goban.myI = parseInt(goban.myI)
+				goban.myI += n
+				if goban.myI == -1
+					goban.myI = $colMax
+				if goban.myI == $colMax + 1
+					goban.myI = 0
+				goban.updateHash!
 
-	goban.up = (n) !->
-		goban.loadPage!
-		$timeout (!-> 
+	goRight = !-> 
 			goban.myJ = parseInt(goban.myJ)
 			goban.myJ += n
 			if goban.myJ == -1
 				goban.myJ = goban.data.length-1
 			if goban.myJ == goban.data.length
 				goban.myJ = 0
-			goban.updateHash!),1000
+			goban.updateHash!
+
+	goban.left = (n) !->
+		goban.loadPage!
+		goban.load parseInt(goban.myI) + n
+		if goban.animate.delay
+			$timeout goLeft,goban.animate.delay
+		else
+			goLeft!
+
+
+	goban.up = (n) !->
+		goban.loadPage!
+		if goban.animate.delay
+			$timeout goRight,goban.animate.delay
+		else 
+			goRight!
 
 	goban.trust = (url)->
 		$sce.trustAsResourceUrl(url)
