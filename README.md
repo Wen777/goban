@@ -17,6 +17,12 @@ angular.module('yourApp', ['goban'])
 ```
 
 
+
+## Example
+[![Example](https://bestian.github.io/frontend)](https://bestian.github.io/frontend)
+
+
+
 ## Getting Started with Goban
 
 
