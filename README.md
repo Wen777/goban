@@ -5,19 +5,20 @@ use Goban to manage series of  hackfoldrs
 
 ![Example] (http://upload.wikimedia.org/wikipedia/commons/6/63/Goban_19x19_vide.png)
 
-## Example
+# Example
 Example see here(https://bestian.github.io/frontend)
 
 
-## Getting Started with Goban
+# Getting Started with Goban
 
-#why Goban?
+##why Goban?
 
 hackfoldr.org is an awesome tool to share and collaborate about 20~30 urls with friends by its grouping power and its ethercalc base.
 
 if you have series of hackfolders and about 30~100 urls to share, you might wish to collect them and show in a single-page web app. This is what Goban does.
 
-#install
+
+##installation
 
 install goban from bower:
 
