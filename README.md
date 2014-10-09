@@ -19,7 +19,7 @@ angular.module('yourApp', ['goban'])
 
 
 ## Example
-[![Example](https://bestian.github.io/frontend)](https://bestian.github.io/frontend)
+[![Example](http://upload.wikimedia.org/wikipedia/commons/6/63/Goban_19x19_vide.png)](https://bestian.github.io/frontend)
 
 
 
