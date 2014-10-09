@@ -1,0 +1,34 @@
+{
+  "name": "goban",
+  "description": "Angular Module to manage Series of Hackfoldrs",
+  "version": "0.0.1",
+  "authors": [
+    "bestian <bestian@gmail.com> (https://bestian.github.io/frontend/)"
+  ],
+  "license": "CC0",
+  "homepage": "https://github.com/bestian/goban",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bestian/goban.git"
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "hackfoldr",
+    "hackfolder",
+    "etchcalc",
+    "g0v",
+    "glassy",
+    "Taiwan"
+  ],
+  "main": "./goban.js",
+  "dependencies": {
+    "angular": "1.2.x || 1.3.x",
+  },
+  "ignore": [
+    "bower_components",
+    "package.json",
+    "g0v.json",
+    "goban.ls"
+  ]
+}

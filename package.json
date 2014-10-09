@@ -1,0 +1,29 @@
+{
+  "name": "goban",
+  "version": "0.0.1",
+  "description": "Angular Module to manage Series of Hackfoldrs",
+  "main": "goban.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bestian/goban.git"
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "hackfoldr",
+    "hackfolder",
+    "etchcalc",
+    "g0v",
+    "glassy",
+    "Taiwan"
+  ],
+  "author": "Angular Core Team <angular-core+npm@google.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "homepage": "http://angularjs.org"
+}
