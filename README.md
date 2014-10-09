@@ -80,4 +80,4 @@ sorry, there's no documentation yet.
 
 ## Contributing
 
-If you'd like to contribute to Goban, please contact: bestian@gmail.com
+If you'd like to contribute to Goban, please contact with: bestian@gmail.com
