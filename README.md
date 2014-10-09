@@ -122,6 +122,16 @@ for now, Goban has only one-way binding feature, but potentially it can grow a t
 note that toIndex filter is well defined form Goban Module.
 
 
+## use ng-repeat, goban.setI, goban.setJ
+
+
 # Contributing
+
+
+## Bug report
+
+please write a gitbug issue
+
+## Improve project
 
 If you'd like to contribute to Goban, please contact with: bestian@gmail.com
