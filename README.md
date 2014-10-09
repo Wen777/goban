@@ -9,6 +9,14 @@ use Goban to manage series of  hackfoldrs
 Example see here(https://bestian.github.io/frontend)
 
 
+## Getting Started with Goban
+
+#why Goban?
+
+hackfoldr.org is an awesome tool to share and collaborate about 20~30 urls with friends by its grouping power and its ethercalc base.
+
+if you have series of hackfolders and about 30~100 urls to share, you might wish to collect them and show in a single-page web app. This is what Goban does.
+
 #install
 
 install goban from bower:
@@ -37,13 +45,14 @@ angular.module('goban')
 ```
 
 use the example code above, Goban will automantically send http GET request to these url when needed: 
-	* https://ethercalc.org/your_title0.csv,
-	* https://ethercalc.org/your_title1.csv,
-	* https://ethercalc.org/your_title2.csv,
-	* https://ethercalc.org/your_title3.csv,
-	* https://ethercalc.org/your_title4.csv,
-	* https://ethercalc.org/your_title5.csv,
-	* https://ethercalc.org/your_title6.csv
+	
+* https://ethercalc.org/your_title0.csv
+* https://ethercalc.org/your_title1.csv
+* https://ethercalc.org/your_title2.csv
+* https://ethercalc.org/your_title3.csv
+* https://ethercalc.org/your_title4.csv
+* https://ethercalc.org/your_title5.csv
+* https://ethercalc.org/your_title6.csv
 
 you may change 'https://ethercalc.org/' to any other path, but your have to save your data use .csv file with same formet as ethercalc, and the path you link must allow http GET request
 
@@ -60,12 +69,10 @@ to start data binding and load the first data from ethercalsc or other path
 
 
 
-## Getting Started with Goban
-
-
 ## Documentation
 
+sorry, there's no documentation yet.
 
 ## Contributing
 
-If you'd like to contribute to Goban
+If you'd like to contribute to Goban, please contact: bestian@gmail.com
