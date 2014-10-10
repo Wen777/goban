@@ -70,9 +70,16 @@ myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
 
 
 	goban.load = (num) !->
-		$http {method: "GET",url: $path + $title + num + '.csv',dataType: "text"}
+
+		folderName = $title + num
+		if typeof goban.folderNames == \array
+			folderName = goban.folderNames[num]
+
+		$http {method: "GET",url: $path + folderName + '.csv',dataType: "text"}
 				.success (data) ->
 					goban.data = parseFromCSV data
+
+
 
 	goban.keyDown = ($event) !->
 		console.log $event
