@@ -68,6 +68,7 @@ use the example code above, Goban will automantically send http GET request to t
 you may change 'https://ethercalc.org/' to any other path, but your have to save your data use .csv file with same formet as ethercalc, and the path you link must allow http GET request
 
 
+
 in your controller, use
 
 ```bash
@@ -78,6 +79,14 @@ function yourCtrl($goban) {
 
 ```
 to start data binding.
+
+
+
+you may also set costum folder names to manage existing hackfolders:
+
+```bash
+  $goban.folderNames = ["foo","bar","baz"]
+```
 
 # binding Goban data
 
