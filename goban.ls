@@ -42,6 +42,7 @@ myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
 	goban.pageLoading = false
 	goban.animate = new Object
 	goban.colMax = $colMax or 3
+	goban.myColumnIndex = [to $colMax]
 
 	goban.setI = (n) !->
 		if goban.myI != n
@@ -86,13 +87,13 @@ myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
 		$event.preventDefault()
 		code = $event.keyCode
 		if code == 40
-			goban.up 1
+			goban.dy 1
 		if code == 38
-			goban.up -1
+			goban.dy -1
 		if code == 37
-			goban.left -1
+			goban.dx -1
 		if code == 39
-			goban.left 1
+			goban.dx 1
 		if code == 32
 			goban.data[goban.myJ].isClosed = !goban.data[goban.myJ].isClosed;
 	
@@ -135,6 +136,10 @@ myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
 
 	goban.getCurrentURL = ->
 		goban.trust((goban.data[goban.myJ] && goban.data[goban.myJ].url) or (goban.data[goban.myJ+1] && goban.data[goban.myJ+1].url))
+
+	goban.backupAll = !->
+		for i in [to $colMax]
+			window.open $path+$title+i+'.csv'  \_blank "width=0, height=0, titlebar=no, toolbar=no"
 
 	goban
 

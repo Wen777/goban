@@ -22,7 +22,7 @@
     };
   };
   myGoban = function($http, $sce, $path, $title, $hash, $colMax, $timeout){
-    var goban, parseFromCSV, goLeft, goUp;
+    var goban, parseFromCSV, res$, i$, ridx$, goX, goY;
     goban = new Object;
     parseFromCSV = function(csv){
       var allTextLines, bodyLines, goodList, lastFolder, bestList;
@@ -69,6 +69,12 @@
     goban.pageLoading = false;
     goban.animate = new Object;
     goban.colMax = $colMax || 3;
+    res$ = [];
+    for (i$ = 0; i$ <= $colMax; ++i$) {
+      ridx$ = i$;
+      res$.push(ridx$);
+    }
+    goban.myColumnIndex = res$;
     goban.setI = function(n){
       if (goban.myI !== n) {
         goban.loadPage();
@@ -102,9 +108,14 @@
       $hash.upDateFromArray([goban.title, goban.myI, goban.myJ]);
     };
     goban.load = function(num){
+      var folderName;
+      folderName = $title + num;
+      if (typeof goban.folderNames === 'array') {
+        folderName = goban.folderNames[num];
+      }
       $http({
         method: "GET",
-        url: $path + $title + num + '.csv',
+        url: $path + folderName + '.csv',
         dataType: "text"
       }).success(function(data){
         return goban.data = parseFromCSV(data);
@@ -116,22 +127,22 @@
       $event.preventDefault();
       code = $event.keyCode;
       if (code === 40) {
-        goban.up(1);
+        goban.dy(1);
       }
       if (code === 38) {
-        goban.up(-1);
+        goban.dy(-1);
       }
       if (code === 37) {
-        goban.left(-1);
+        goban.dx(-1);
       }
       if (code === 39) {
-        goban.left(1);
+        goban.dx(1);
       }
       if (code === 32) {
         goban.data[goban.myJ].isClosed = !goban.data[goban.myJ].isClosed;
       }
     };
-    goLeft = function(n){
+    goX = function(n){
       goban.myI = parseInt(goban.myI);
       goban.myI += n;
       if (goban.myI === -1) {
@@ -142,7 +153,7 @@
       }
       return goban.updateHash();
     };
-    goUp = function(n){
+    goY = function(n){
       goban.myJ = parseInt(goban.myJ);
       goban.myJ += n;
       if (goban.myJ === -1) {
@@ -153,21 +164,21 @@
       }
       return goban.updateHash();
     };
-    goban.left = function(n){
+    goban.dx = function(n){
       goban.loadPage();
       goban.load(parseInt(goban.myI) + n);
       if (goban.animate.delay) {
-        $timeout(goLeft(n), goban.animate.delay);
+        $timeout(goX(n), goban.animate.delay);
       } else {
-        goLeft(n);
+        goX(n);
       }
     };
-    goban.up = function(n){
+    goban.dy = function(n){
       goban.loadPage();
       if (goban.animate.delay) {
-        $timeout(goRight(n), goban.animate.delay);
+        $timeout(goY(n), goban.animate.delay);
       } else {
-        goUp(n);
+        goY(n);
       }
     };
     goban.trust = function(url){
@@ -175,6 +186,20 @@
     };
     goban.getCurrentURL = function(){
       return goban.trust((goban.data[goban.myJ] && goban.data[goban.myJ].url) || (goban.data[goban.myJ + 1] && goban.data[goban.myJ + 1].url));
+    };
+    goban.backupAll = function(){
+      var i$, ref$, len$, i;
+      for (i$ = 0, len$ = (ref$ = (fn$())).length; i$ < len$; ++i$) {
+        i = ref$[i$];
+        window.open($path + $title + i + '.csv', '_blank', "width=0, height=0, titlebar=no, toolbar=no");
+      }
+      function fn$(){
+        var i$, to$, results$ = [];
+        for (i$ = 0, to$ = $colMax; i$ <= to$; ++i$) {
+          results$.push(i$);
+        }
+        return results$;
+      }
     };
     return goban;
   };

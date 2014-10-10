@@ -28,6 +28,8 @@
     "test",
     "tests",
     "package.json",
-    "package.g0v.json"
+    "package.g0v.json",    
+    "*.ls",
+    "*.scss",
   ]
 }
