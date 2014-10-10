@@ -1,4 +1,4 @@
-goban
+Goban 棋盤
 =====
 
 use Goban to manage series of  hackfoldrs
@@ -49,6 +49,11 @@ angular.module('goban')
 
 ```
 
+if you wish a static data link, use 
+
+```bash
+  .constant('$path', 'your_path')
+```
 
 use the example code above, Goban will automantically send http GET request to these url when needed: 
 	
