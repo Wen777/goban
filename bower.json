@@ -2,7 +2,7 @@
   "name": "goban",
   "main": "goban.js",
   "license": "CC0",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [
     "Bestian Tang <besitan@gmail.com>"
   ],
