@@ -30,6 +30,6 @@
     "package.json",
     "package.g0v.json",    
     "*.ls",
-    "*.scss",
+    "*.scss"
   ]
 }
