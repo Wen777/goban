@@ -21,7 +21,7 @@
       }
     };
   };
-  myGoban = function($http, $sce, $path, $title, $hash, $colMax, $timeout){
+  myGoban = function($http, $sce, $gobanPath, $gobanTitle, $hash, $gobanMax, $timeout){
     var goban, parseFromCSV, res$, i$, ridx$, goX, goY;
     goban = new Object;
     parseFromCSV = function(csv){
@@ -62,15 +62,15 @@
       });
       return bestList;
     };
-    goban.path = $path || '';
-    goban.title = $hash.asArray()[0] || $title;
+    goban.path = $gobanPath || '';
+    goban.title = $hash.asArray()[0] || $gobanTitle;
     goban.myI = $hash.asArray()[1] || 0;
     goban.myJ = $hash.asArray()[2] || 0;
     goban.pageLoading = false;
     goban.animate = new Object;
-    goban.colMax = $colMax || 3;
+    goban.colMax = $gobanMax || 3;
     res$ = [];
-    for (i$ = 0; i$ <= $colMax; ++i$) {
+    for (i$ = 0; i$ <= $gobanMax; ++i$) {
       ridx$ = i$;
       res$.push(ridx$);
     }
@@ -109,13 +109,13 @@
     };
     goban.load = function(num){
       var folderName;
-      folderName = $title + num;
+      folderName = $gobanTitle + num;
       if (typeof goban.folderNames === 'array') {
         folderName = goban.folderNames[num];
       }
       $http({
         method: "GET",
-        url: $path + folderName + '.csv',
+        url: $gobanPath + folderName + '.csv',
         dataType: "text"
       }).success(function(data){
         return goban.data = parseFromCSV(data);
@@ -191,11 +191,11 @@
       var i$, ref$, len$, i;
       for (i$ = 0, len$ = (ref$ = (fn$())).length; i$ < len$; ++i$) {
         i = ref$[i$];
-        window.open($path + $title + i + '.csv', '_blank', "width=0, height=0, titlebar=no, toolbar=no");
+        window.open($gobanPath + $gobanTitle + i + '.csv', '_blank', "width=0, height=0, titlebar=no, toolbar=no");
       }
       function fn$(){
         var i$, to$, results$ = [];
-        for (i$ = 0, to$ = $colMax; i$ <= to$; ++i$) {
+        for (i$ = 0, to$ = $gobanMax; i$ <= to$; ++i$) {
           results$.push(i$);
         }
         return results$;
@@ -203,5 +203,5 @@
     };
     return goban;
   };
-  angular.module('goban', []).factory('$hash', myHash).factory('$goban', ['$http', '$sce', '$path', '$title', '$hash', '$colMax', '$timeout', myGoban]).filter('toIndex', toIndex);
+  angular.module('goban', []).factory('$hash', myHash).factory('$goban', ['$http', '$sce', '$gobanPath', '$gobanTitle', '$hash', '$gobanMax', '$timeout', myGoban]).filter('toIndex', toIndex);
 }).call(this);

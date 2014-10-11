@@ -43,9 +43,9 @@ config goban with three constants: $path, $title, $colMax,
 
 ```bash
 angular.module('goban')
-  .constant('$path', 'https://ethercalc.org/')
-  .constant('$title', 'your_title')
-  .constant('$colMax', 6)
+  .constant('$gobanPath', 'https://ethercalc.org/')
+  .constant('$gobanTitle', 'your_title')
+  .constant('$gobanMax', 6)
 
 ```
 

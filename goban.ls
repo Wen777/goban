@@ -9,7 +9,7 @@ myHash = ->
 	upDateFromArray: (list) !->
 		location.hash = \# + list.join \&
 
-myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
+myGoban = ($http, $sce, $gobanPath, $gobanTitle, $hash, $gobanMax, $timeout)->
 	goban = new Object;
 
 	parseFromCSV = (csv) ->
@@ -35,14 +35,14 @@ myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
 						obj
 		bestList
 
-	goban.path = $path or ''
-	goban.title = $hash.asArray![0] or $title
+	goban.path = $gobanPath or ''
+	goban.title = $hash.asArray![0] or $gobanTitle
 	goban.myI = $hash.asArray![1] or 0
 	goban.myJ = $hash.asArray![2] or 0
 	goban.pageLoading = false
 	goban.animate = new Object
-	goban.colMax = $colMax or 3
-	goban.myColumnIndex = [to $colMax]
+	goban.colMax = $gobanMax or 3
+	goban.myColumnIndex = [to $gobanMax]
 
 	goban.setI = (n) !->
 		if goban.myI != n
@@ -72,11 +72,11 @@ myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
 
 	goban.load = (num) !->
 
-		folderName = $title + num
+		folderName = $gobanTitle + num
 		if typeof goban.folderNames == \array
 			folderName = goban.folderNames[num]
 
-		$http {method: "GET",url: $path + folderName + '.csv',dataType: "text"}
+		$http {method: "GET",url: $gobanPath + folderName + '.csv',dataType: "text"}
 				.success (data) ->
 					goban.data = parseFromCSV data
 
@@ -138,12 +138,12 @@ myGoban = ($http, $sce, $path, $title, $hash, $colMax, $timeout)->
 		goban.trust((goban.data[goban.myJ] && goban.data[goban.myJ].url) or (goban.data[goban.myJ+1] && goban.data[goban.myJ+1].url))
 
 	goban.backupAll = !->
-		for i in [to $colMax]
-			window.open $path+$title+i+'.csv'  \_blank "width=0, height=0, titlebar=no, toolbar=no"
+		for i in [to $gobanMax]
+			window.open $gobanPath+$gobanTitle+i+'.csv'  \_blank "width=0, height=0, titlebar=no, toolbar=no"
 
 	goban
 
 angular.module 'goban' []
 	.factory '$hash' myHash
-	.factory '$goban' [\$http, \$sce, \$path, \$title, \$hash, \$colMax, \$timeout, myGoban]
+	.factory '$goban' [\$http, \$sce, \$gobanPath, \$gobanTitle, \$hash, \$gobanMax, \$timeout, myGoban]
 	.filter 'toIndex' toIndex
